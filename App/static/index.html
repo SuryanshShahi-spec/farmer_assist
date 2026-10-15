@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#eff7f1" />
+    <title>FarmCast | Grow with confidence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar glass">
+        <a class="brand" href="/" aria-label="FarmCast home">
+          <span class="brand-mark">f</span>
+          <span>farm<span class="brand-light">cast</span><small>FIELD COMPANION</small></span>
+        </a>
+        <div class="nav-label">WORKSPACE</div>
+        <nav class="navigation" aria-label="Main navigation">
+          <button class="nav-item active" data-page="weather">
+            <span class="nav-icon">◉</span><span>Weather</span>
+          </button>
+          <button class="nav-item" data-page="assistant">
+            <span class="nav-icon">✳</span><span>Assistant</span>
+          </button>
+          <button class="nav-item" data-page="plants">
+            <span class="nav-icon">❋</span><span>Plant analysis</span>
+          </button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="field-note">
+            <span class="note-spark">✳</span>
+            <p>Better decisions<br />start in the field.</p>
+            <span class="note-caption">Your growing season, in sync.</span>
+          </div>
+          <div class="api-status"><span class="status-dot"></span> Connected to FarmCast API</div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <div class="eyebrow" id="date-label">FARM INTELLIGENCE</div>
+            <h1 id="page-title">Weather overview</h1>
+          </div>
+          <div class="topbar-user"><span class="user-avatar">🌱</span><span>Grower</span></div>
+        </header>
+
+        <section class="page active" id="page-weather">
+          <div class="welcome-row">
+            <div><h2>Good growing starts here.</h2><p>Local conditions and clear next steps for your farm.</p></div>
+            <form class="location-search" id="weather-form">
+              <span>⌖</span>
+              <input id="location-input" type="text" value="Jalgaon, Maharashtra" maxlength="120" aria-label="Location" />
+              <button type="submit" aria-label="Get weather">Search <span>→</span></button>
+            </form>
+          </div>
+          <div class="weather-hero glass">
+            <div class="hero-copy">
+              <div class="live-label"><span class="status-dot"></span> CURRENT CONDITIONS <span id="weather-time"></span></div>
+              <div class="hero-place" id="weather-location">Search a location</div>
+              <div class="temperature"><span id="temperature">--</span><sup>°C</sup></div>
+              <div class="condition" id="condition">Your field forecast will appear here</div>
+              <div class="feels-like">Feels like <span id="feels-like">--</span>°C</div>
+            </div>
+            <div class="weather-art" aria-hidden="true"><div class="sun"></div><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div><div class="art-leaf leaf-one"></div><div class="art-leaf leaf-two"></div></div>
+            <div class="hero-foot"><span>🌿 &nbsp;FIELD NOTE</span><span id="field-note">Search your location for a tailored update.</span></div>
+          </div>
+          <div class="section-heading"><div><span class="eyebrow">AT A GLANCE</span><h3>Today on your farm</h3></div><span class="muted">Live weather data</span></div>
+          <div class="metrics-grid">
+            <article class="metric-card glass"><span class="metric-icon mint">◌</span><span class="metric-label">Humidity</span><strong><span id="humidity">--</span><small>%</small></strong><span class="metric-hint">Air moisture</span></article>
+            <article class="metric-card glass"><span class="metric-icon lime">↗</span><span class="metric-label">Wind speed</span><strong><span id="wind-speed">--</span><small>km/h</small></strong><span class="metric-hint" id="wind-direction">Current wind</span></article>
+            <article class="metric-card glass"><span class="metric-icon peach">☂</span><span class="metric-label">Precipitation</span><strong><span id="precipitation">--</span><small>mm</small></strong><span class="metric-hint">Reported now</span></article>
+          </div>
+          <div class="bottom-grid">
+            <article class="advice-card glass"><div class="card-title"><span class="metric-icon mint">✳</span><div><span class="eyebrow">FARMCAST INSIGHT</span><h3>Weather-aware farming</h3></div></div><p id="weather-advice">Search for current conditions to get a practical field note.</p><button class="text-button" data-open="assistant">Ask the assistant <span>→</span></button></article>
+            <article class="quick-card glass"><span class="eyebrow">QUICK ACCESS</span><h3>Keep an eye on your crops</h3><p>Upload a clear leaf photo for an AI-assisted visual review.</p><button class="primary-button" data-open="plants">Analyze a plant <span>→</span></button></article>
+          </div>
+        </section>
+
+        <section class="page" id="page-assistant">
+          <div class="page-intro"><span class="eyebrow">YOUR FARMING PARTNER</span><h2>Ask the field assistant</h2><p>Get practical growing guidance, with current weather context when available.</p></div>
+          <div class="chat-panel glass">
+            <div class="chat-top"><span class="assistant-orb">✳</span><div><strong>FarmCast Assistant</strong><small>Grounded, practical growing guidance</small></div><span class="online-pill"><span class="status-dot"></span> Ready</span></div>
+            <div class="chat-messages" id="chat-messages"><div class="message assistant-message"><span class="message-avatar">✳</span><div><p>Hello! I can help with irrigation, crop care, weather-aware field work, or general growing questions. What’s on your mind?</p><small>FarmCast assistant</small></div></div></div>
+            <form class="chat-form" id="chat-form"><textarea id="chat-input" rows="2" maxlength="2000" placeholder="Ask about your crops, soil, or next field task…" required></textarea><button class="send-button" type="submit" aria-label="Send message">↑</button><div class="chat-foot">AI guidance can be fallible. Confirm treatment decisions with a local agricultural expert.</div></form>
+          </div>
+        </section>
+
+        <section class="page" id="page-plants">
+          <div class="page-intro"><span class="eyebrow">CROP HEALTH</span><h2>A closer look at your plants</h2><p>Share a clear leaf photo for an AI-assisted assessment and practical next steps.</p></div>
+          <div class="plant-layout">
+            <form class="upload-card glass" id="plant-form">
+              <label class="drop-zone" id="drop-zone" for="plant-image">
+                <input id="plant-image" type="file" accept="image/jpeg,image/png,image/webp" required />
+                <span class="upload-symbol">↑</span><strong id="upload-title">Drop a leaf photo here</strong><span id="upload-subtitle">or click to browse · JPG, PNG or WEBP · max 8 MB</span>
+                <img id="image-preview" alt="Selected plant leaf preview" hidden />
+              </label>
+              <div class="form-row"><label>Crop<input id="crop-name" type="text" placeholder="e.g. Tomato" maxlength="80" required /></label><label>Growth stage<select id="growth-stage"><option>Seedling</option><option>Vegetative</option><option>Flowering</option><option>Fruiting</option><option>Not sure</option></select></label></div>
+              <label class="field-label">Location (optional)<input id="plant-location" type="text" placeholder="Jalgaon, Maharashtra" maxlength="120" /></label>
+              <button class="primary-button analyze-button" type="submit"><span>✳</span> Analyze plant <span>→</span></button>
+              <p class="disclaimer">Visual AI assessment only — not a laboratory diagnosis. Verify treatment recommendations before use.</p>
+            </form>
+            <article class="analysis-card glass" id="analysis-card"><div class="analysis-empty"><span class="plant-illustration">♧</span><span class="eyebrow">ANALYSIS REPORT</span><h3>Your report will appear here</h3><p>Upload a well-lit photo with the leaf in focus. Include both healthy and affected areas if possible.</p></div></article>
+          </div>
+        </section>
+        <footer class="footer"><span>FarmCast · A little more insight for every growing season.</span><span>Built for the people who grow.</span></footer>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
